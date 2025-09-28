@@ -1,0 +1,47 @@
+-- Users table
+CREATE TABLE users (
+    user_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    country VARCHAR(50)
+);
+
+INSERT INTO users (user_id, name, country) VALUES
+(1, 'Alice', 'USA'),
+(2, 'Bob', 'India'),
+(3, 'Charlie', 'UK'),
+(4, 'Diana', 'USA'),
+(5, 'Ethan', NULL);
+
+-- Products table
+CREATE TABLE products (
+    product_id INT PRIMARY KEY,
+    category VARCHAR(50),
+    price DECIMAL(10,2)
+);
+
+INSERT INTO products (product_id, category, price) VALUES
+(101, 'Electronics', 1200.00),
+(102, 'Books', 20.00),
+(103, 'Clothing', 50.00),
+(104, 'Electronics', 800.00),
+(105, 'Books', 15.00);
+
+-- Orders table
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    user_id INT,
+    product_id INT,
+    order_date DATE,
+    revenue DECIMAL(10,2),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (product_id) REFERENCES products(product_id)
+);
+
+INSERT INTO orders (order_id, user_id, product_id, order_date, revenue) VALUES
+(1001, 1, 101, '2025-01-10', 1200.00),
+(1002, 1, 102, '2025-02-14', 20.00),
+(1003, 2, 103, '2025-03-05', 50.00),
+(1004, 3, 104, '2025-03-18', 800.00),
+(1005, 4, 105, '2025-04-22', 15.00),
+(1006, 2, 101, '2025-05-02', 1200.00),
+(1007, 5, 103, '2025-06-11', 50.00);
